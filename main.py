@@ -11,6 +11,7 @@ not only white space.
 import os
 
 LINE = "Floor 13. We don't have a floor 13. I just wanted to see your face."
+# Gate: an entry must be 1-120 characters; MAX_CHARS enforces that cap.
 MAX_CHARS = 120
 
 
@@ -19,7 +20,7 @@ def main():
     if not line:
         raise SystemExit("entry line is empty")
     if len(line) > MAX_CHARS:
-        line = line[:MAX_CHARS].rstrip()
+        raise SystemExit("entry line exceeds MAX_CHARS (%d)" % MAX_CHARS)
     out_dir = os.environ.get("OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, "entry.txt")
